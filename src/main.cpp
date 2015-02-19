@@ -3,7 +3,7 @@
 
 
 Programa: Busca Minas
-Version:0.2
+Version:0.3
 
 El juego del buscaminas comienza con un tablero de F filas y
 C columnas, donde se ocultan N minas. Inicialmente no se
@@ -87,6 +87,11 @@ int main()
     while (continuar)
     {
         leerorden(col,cadena,cadenatexto,posicion);
+		if(cadena=="exit"){
+			cout<<"Salimos del juego."<<endl;
+			exit(-1);
+
+		}
         if(cadenatexto=="a" || cadenatexto=="abrir")
         {
             cout<<"abre"<<endl;
@@ -103,6 +108,7 @@ int main()
         }
         cadenatexto.clear();
     }
+	return 0;
 
 }
 
@@ -301,7 +307,7 @@ bool seguir(const int &fil,const int &col,const vector<int> &matriz,bool &contin
 //leer la orden y la posicon de actuacion
 void leerorden(const int &col,string &cadena,string &cadenatexto,int &posicion)
 {
-    cout<<"Dime accion (abrir - marcar) y posicion (fil y col):";
+    cout<<"Dime accion (abrir - marcar) y posicion (fil y col) o exit:";
     getline(cin,cadena);
     estructurarordenes(col,cadena,cadenatexto,posicion);
     pasaraminusculas(cadenatexto);
