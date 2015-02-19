@@ -3,7 +3,7 @@
 
 
 Programa: Busca Minas
-Version:0.1
+Version:0.2
 
 El juego del buscaminas comienza con un tablero de F filas y
 C columnas, donde se ocultan N minas. Inicialmente no se
@@ -19,6 +19,7 @@ juego.
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip>      // std::setw
 #include <cstdlib> // rand, srand
 #include <ctime> // time
 using namespace std;
@@ -540,7 +541,7 @@ void poner12345678(const int fil,vector<int> &matriz)
 //muestra la matriz de digitos
 void mostrarmatriz(const vector<int> &matriz,const int &fil,const int &col)
 {
-    cout<<"    ";
+    cout<<setw(6);
 
     for(int i=0; i<col; i++)
     {
@@ -554,9 +555,12 @@ void mostrarmatriz(const vector<int> &matriz,const int &fil,const int &col)
     cout<<endl;
     for (int f=0; f<fil; f++)
     {
-        cout<<f<<" |";
-        for (int c=0; c<col; c++)
-            cout << " "<<matriz[f*col+c] << "|";
+        if(f<10) cout<<f<<setw(3)<<"|";
+		else cout<<f<<setw(2)<<"|";
+        for (int c=0; c<col; c++){
+        	if(c<10)    cout <<setw(2)<<matriz[f*col+c] << "|";
+			else 		cout <<setw(3)<<matriz[f*col+c] << "|";
+		}
         cout << endl;
     }
     for(int i=0; i<col; i++)
@@ -564,12 +568,13 @@ void mostrarmatriz(const vector<int> &matriz,const int &fil,const int &col)
         cout<<"----";
     }
     cout<<endl;
+
 }
 
 //muestra la matriz que se muestra al usuario.
 void mostrarmatrizs(const string &matrizs,const int &fil,const int &col)
 {
-    cout<<"    ";
+	cout<<setw(6);
 
     for(int i=0; i<col; i++)
     {
@@ -583,9 +588,12 @@ void mostrarmatrizs(const string &matrizs,const int &fil,const int &col)
     cout<<endl;
     for (int f=0; f<fil; f++)
     {
-        cout<<f<<" |";
-        for (int c=0; c<col; c++)
-            cout << " "<<matrizs[f*col+c] << "|";
+        if(f<10) cout<<f<<setw(3)<<"|";
+		else cout<<f<<setw(2)<<"|";
+        for (int c=0; c<col; c++){
+        	if(c<10)    cout <<setw(2)<<matrizs[f*col+c] << "|";
+			else 		cout <<setw(3)<<matrizs[f*col+c] << "|";
+		}
         cout << endl;
     }
     for(int i=0; i<col; i++)
@@ -595,7 +603,6 @@ void mostrarmatrizs(const string &matrizs,const int &fil,const int &col)
     cout<<endl;
 
 }
-
 //convierte una cadena de texto en mayusculas a minustulas
 void pasaraminusculas (string &cadena)
 {
